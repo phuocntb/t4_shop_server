@@ -1,0 +1,20 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum CategoryStatus {
+    active
+    inactive
+}
+
+model categories {
+  id    Int    @id @default(autoincrement())
+  title String @db.Char(50) @unique
+  avatar String @db.LongText	 
+  status CategoryStatus @default(inactive)
+}
